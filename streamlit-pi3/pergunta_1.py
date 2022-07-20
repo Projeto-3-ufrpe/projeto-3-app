@@ -6,7 +6,7 @@ import seaborn as sns
 def pergunta1():
     
     st.title('Quais colunas do dataset causam um maior impacto para que o paciente desenvolva essas doenças?')
-    dataframe = pd.read_csv('C:/Users/victo/OneDrive/Área de Trabalho/MAIN/PI3/heart_disease/heart_2020_cleaned.csv')
+    dataframe = pd.read_csv('../heart_2020_cleaned.csv')
     st.markdown('### Inicio da análise: observação da influencia de cada coluna em possuir doença cardio vascular.')
     st.markdown('#### De começo iremos análisar as colunas que representam os hábitos dos individuos que, no caso, são sobre o consumo de cigarro ou alcool, sobre a prática de atividades fisicas e sobre o tempo de sono.')
     st.dataframe(dataframe[['Smoking', 'AlcoholDrinking', 'PhysicalActivity', 'SleepTime']].head())

@@ -11,7 +11,7 @@ selection = st.sidebar.radio(" ", ["Inicio", "Pergunta 1", "Pergunta 2", "Pergun
 def inicio():
     st.title('Ánalise de dados do dataset "Heart_disease" para a cadeira PI3')
 
-    dataframe = pd.read_csv('C:/Users/victo/OneDrive/Área de Trabalho/MAIN/PI3/heart_disease/heart_2020_cleaned.csv')
+    dataframe = pd.read_csv('../heart_2020_cleaned.csv')
 
     chart_data = pd.DataFrame(list(zip(dataframe['BMI'].tolist(),dataframe['PhysicalHealth'].tolist(),dataframe['MentalHealth'].tolist())),
     columns = ['Body Mass Index (BMI)','PhysicalHealth','MentalHealth'])
