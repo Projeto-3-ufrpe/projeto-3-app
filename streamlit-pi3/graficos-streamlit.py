@@ -15,9 +15,10 @@ def inicio():
 
     chart_data = pd.DataFrame(list(zip(dataframe['BMI'].tolist(),dataframe['PhysicalHealth'].tolist(),dataframe['MentalHealth'].tolist())),
     columns = ['Body Mass Index (BMI)','PhysicalHealth','MentalHealth'])
-    range_chart = st.slider('Quantidade de dados no gráfico', 0, 300, 30)
     st.dataframe(dataframe.head())
-    st.write('O objetivo deste traabalho será analisar e expôr aqui informações necessárias para a construção do artigo.')
+    range_chart = st.slider('Quantidade de dados no gráfico', 0, 300, 30)
+    st.area_chart(chart_data.head(range_chart))
+    st.write('O objetivo deste trabalho será analisar e expôr aqui informações necessárias para a construção do artigo.')
 
 
 
