@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import pergunta_1
+import pergunta_2
 # import plotly.express as px
 
 selection = st.sidebar.radio(" ", ["Inicio", "Pergunta 1", "Pergunta 2", "Pergunta 3"])
@@ -26,3 +27,5 @@ if selection == "Pergunta 1":
     pergunta_1.pergunta1()
 elif selection == "Inicio":
     inicio()
+elif selection == "Pergunta 2":
+    pergunta_2.pergunta_2()
