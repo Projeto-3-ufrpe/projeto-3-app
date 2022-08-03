@@ -8,13 +8,13 @@ def pergunta1():
     st.title('É correto afirmar que características imutáveis dos indivíduos podem indicar que eles possuem ou podem vir a possuir doenças cardíacas? E existe algum fator que acompanhe essas características com frequência?')
     dataframe = pd.read_csv('../heart_2020_cleaned.csv')
     st.markdown('### Objetivo da Análise: Comparar os dados referentes a raça, idade e sexo afim de enxergar quais se repetem com mais frequencia entre os individuos portadores de doenças cardiacas. E em seguida analisar se algum outro dado se repete junto a essas características.')
-    st.markdown('#### De inicio iremos comparar a quantidade de individuos que possuem doenças cardiacas com a quantidade de individuos que não possuem em cada coluna.')
+    st.markdown('#### De início iremos comparar a quantidade de indivíduos que possuem doenças cardíacas com a quantidade de indivíduos que não possuem em cada coluna.')
     st.markdown('###### 5 primeiros itens de cada coluna.')
     st.dataframe(dataframe[['Sex', 'AgeCategory', 'Race']].head())
 
     st.markdown("***")
 
-    st.markdown('##### Entre os sexos, quem possui mais individuos com doenças cardiacas?')
+    st.markdown('##### Entre os sexos, quem possui mais indivíduos com doenças cardíacas?')
     col1, col2 = st.columns(2)
     with col1:
         selection = st.radio("Selecionar o sexo dos individuos", ["Feminino", "Masculino"])
@@ -43,12 +43,12 @@ def pergunta1():
     st.markdown("***")
 
 
-    st.markdown('##### Entre as grupos de idade, quem possui mais individuos com doenças cardiacas?')
+    st.markdown('##### Entre os grupos de idade, quem possui mais indivíduos com doenças cardíacas?')
     dataframe_age_yes = dataframe[(dataframe['HeartDisease'] == 'Yes')]
     fig, axes = plt.subplots()
     fig = plt.figure(figsize=(10, 4), dpi=200)
     axes = sns.countplot(data=dataframe_age_yes,y='HeartDisease', hue='AgeCategory',linewidth=5, palette='Set2')
-    axes.set_xlabel('Numero de individuos com doenças cardiacas', fontsize=10)
+    axes.set_xlabel('Numero de indivíduos com doenças cardíacas', fontsize=10)
     axes.set_ylabel('Catergorias de idade', fontsize=10)
     axes.legend(prop={"size":10})
     st.pyplot(fig)
@@ -141,8 +141,8 @@ def pergunta1():
 
     
 
-    st.markdown('### Oque se pode entender sobre a analise de cada coluna que representam as caracteristicas imutaveis dos individuos:')
-    st.write(" Começando pelo sexo dos individuos, é visivel que os homens possuem mais individuos portadores de doenças cardiacas do que as mulhores. Em seguida analisando a faixa etaria, é possivel observar que as pessoas de 80 anos ou mais é o grupo com mais portadores, mesmo após serem analisados isoladamente. Quanto ao grupo racial de cada um fica claro que os brancos possuem mais pessoas portadoras de doenças cardiacas entre si.")
-    st.write("  Por fim, essas analises nos leva a indicação que homens brancos a partir dos 80 anos são os que, considerando suas caracteristicas imutaveis, mais possuem doenças cardiacas.")
+    st.markdown('### O que se pode entender sobre a análise de cada coluna que representam as características imutáveis dos indivíduos:')
+    st.write(" Começando pelo sexo dos indivíduos, é visível que os homens possuem mais indivíduos portadores de doenças cardiacas do que as melhores. Em seguida analisando a faixa etaria, é possivel observar que as pessoas de 80 anos ou mais é o grupo com mais portadores, mesmo após serem analisados isoladamente. Quanto ao grupo racial de cada um fica claro que os brancos possuem mais pessoas portadoras de doenças cardiacas entre si.")
+    st.write("  Por fim, essas análises nos leva a indicação que homens brancos a partir dos 80 anos são os que, considerando suas caracteristicas imutaveis, mais possuem doenças cardiacas.")
     
 
