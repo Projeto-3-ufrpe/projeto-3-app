@@ -7,7 +7,7 @@ import pergunta_1
 import pergunta_2
 
 
-opcoes = ["Inicio", "🧑 Caracteristicas imutaveis", "🧠 Deonças vindas de outros orgãos ", "⛹️ Hábitos"]
+opcoes = ["Inicio", "🧑 Caracteristicas imutaveis", "🧠 Deonças vindas de outros orgãos", "⛹️ Hábitos"]
 with st.sidebar:
     
     st.markdown('# 🆙GRUPO UPSCALE ')
@@ -37,9 +37,9 @@ def inicio():
 
 
 
-if selection == "Caracteristicas imutaveis":
+if selection == "🧑 Caracteristicas imutaveis":
     pergunta_1.pergunta1()
 elif selection == "Inicio":
     inicio()
-elif selection == "Deonças vindas de outros orgãos":
+elif selection == "🧠 Deonças vindas de outros orgãos":
     pergunta_2.pergunta_2()
