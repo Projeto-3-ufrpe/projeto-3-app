@@ -7,7 +7,7 @@ from dataframe import Dados
 import sklearn.preprocessing as sk
 
 #Criar x0's com valores iguais a 1 (?)
-def insert_notes(X):
+def insert_ones(X):
     ones = np.ones([X.shape[0], 1])
     return np.concatenate((ones, X), axis=1)
 
@@ -17,7 +17,7 @@ def sigmoid(z):
 def binary_cross_entropy(w, X, y):
     m = len(X)
     parte1 = np.multiply(-y, np.log(sigmoid(X @ w.T)))
-    parte2 = np.muiltiply((1 - y), np.log(1 - sigmoid(X @ w.T)))
+    parte2 = np.multiply((1 - y), np.log(1 - sigmoid(X @ w.T)))
     somatorio = np.sum(parte1 - parte2)
     return somatorio / m
 
@@ -51,7 +51,25 @@ linha_w = np.random.rand(1, features+1)
 valores = np.arange(-10,10,step=1)
 fix, ax = plt.subplots(figsize=(6,4))
 ax.plot(valores, sigmoid(valores), 'r')
+# plt.show()
+
+#INICIANDO
+training_data = insert_ones(training_data)
+#alpha=taxa de aprendizado
+alpha = 0.01
+#epoch = quantidade de repetições
+epoch = 10000
+w, cost = gradient_descent(linha_w, training_data, target_variable, alpha, epoch)
+
+# plotar a queda do custo
+fix, ax = plt.subplots()
+ax.plot(np.arange(epoch), cost, 'r')
+ax.set_xlabel('Iterações')
+ax.set_ylabel('Custo')
+ax.set_title('Erro vs Epoch')
 plt.show()
+
+#PREDICOES - MINUTOS DO VIDEO 5:02 - https://www.youtube.com/watch?v=yV9ipYEtvnM&t=316s
 
 
 
