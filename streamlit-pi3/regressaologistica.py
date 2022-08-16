@@ -11,7 +11,8 @@ def insert_notes(X):
     ones = np.ones([X.shape[0], 1])
     return np.concatenate((ones, X), axis=1)
 
-#função que faz que a nossa regressão possa ser aplicada em um problema de classificação
+#função que faz que a nossa regressão possa ser aplicada em um problema de classificação / minuto 2:54 do video
+#https://www.youtube.com/watch?v=yV9ipYEtvnM
 def sigmoid(z):
     pass
 
