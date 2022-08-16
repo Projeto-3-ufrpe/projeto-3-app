@@ -3,8 +3,8 @@ from tkinter import W
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import pergunta_1
-import pergunta_2
+import pergunta_1, pergunta_2, pergunta_3
+
 
 
 opcoes = ["Inicio", "🧑 Caracteristicas imutaveis", "🧠 Deonças vindas de outros orgãos", "⛹️ Hábitos"]
@@ -43,3 +43,5 @@ elif selection == "Inicio":
     inicio()
 elif selection == "🧠 Deonças vindas de outros orgãos":
     pergunta_2.pergunta_2()
+elif selection == "⛹️ Hábitos":
+    pergunta_3.pergunta3()
