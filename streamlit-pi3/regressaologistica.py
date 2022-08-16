@@ -11,10 +11,23 @@ def insert_notes(X):
     ones = np.ones([X.shape[0], 1])
     return np.concatenate((ones, X), axis=1)
 
-#função que faz que a nossa regressão possa ser aplicada em um problema de classificação / minuto 2:54 do video
-#https://www.youtube.com/watch?v=yV9ipYEtvnM
 def sigmoid(z):
-    pass
+    return 1 / ( 1 + np.exp(-z))
+
+def binary_cross_entropy(w, X, y):
+    m = len(X)
+    parte1 = np.multiply(-y, np.log(sigmoid(X @ w.T)))
+    parte2 = np.muiltiply((1 - y), np.log(1 - sigmoid(X @ w.T)))
+    somatorio = np.sum(parte1 - parte2)
+    return somatorio / m
+
+def gradient_descent(w, X, y, alpha, epoch):
+    const = np.zeros(epoch)
+    for i in range(epoch):
+        w = w - (alpha/len(X)) * np.sum((sigmoid(X@w.T) - y) * X, axis=0)
+        const[i] = binary_cross_entropy(w,X,y)
+    return w, const
+
 
     
 
@@ -34,7 +47,11 @@ scaler.fit(training_data)
 training_data = scaler.transform(training_data)
 #criando uma matriz do tamanho de uma linha da tabela com valores aleatórios entre 0 e 1
 linha_w = np.random.rand(1, features+1)
-print(linha_w)
+#CRIANDO VALORES EM -10 E 10 E APLICAR A SIGMOID PARA VISUALIZAÇÃO DO GRÁFICO
+valores = np.arange(-10,10,step=1)
+fix, ax = plt.subplots(figsize=(6,4))
+ax.plot(valores, sigmoid(valores), 'r')
+plt.show()
 
 
 
