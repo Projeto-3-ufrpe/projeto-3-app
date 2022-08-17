@@ -28,6 +28,12 @@ def gradient_descent(w, X, y, alpha, epoch):
         const[i] = binary_cross_entropy(w,X,y)
     return w, const
 
+def predict(w, X, threshold = 0.5):
+    p = sigmoid(X @ w.T) >= threshold
+    return (p.astype('int'))
+
+
+
 
     
 
@@ -69,7 +75,9 @@ ax.set_ylabel('Custo')
 ax.set_title('Erro vs Epoch')
 plt.show()
 
-#PREDICOES - MINUTOS DO VIDEO 5:02 - https://www.youtube.com/watch?v=yV9ipYEtvnM&t=316s
+#PREDICOES NÃO ESTA FUNCIONANDO
+print(predict(linha_w, training_data[0]))
+
 
 
 
