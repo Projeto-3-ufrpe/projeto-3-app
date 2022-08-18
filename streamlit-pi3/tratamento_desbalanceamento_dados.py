@@ -6,7 +6,7 @@ import numpy as np
 from sklearn import model_selection, dummy, metrics, utils, linear_model
 def desbalanceamento_dados():
     st.title("A Partir dos dados abaixo podemos notar que há um desbalanceamento dos dados")
-    df = dataframe.Dados.dataframe
+    df = dataframe.Dados.dataframe_somente_com_colunas_numericas
     st.dataframe(df.HeartDisease.value_counts())
     #testando com DummyClassifier
     y = df.HeartDisease
@@ -37,6 +37,8 @@ def desbalanceamento_dados():
     subamostragem = linear_model.LogisticRegression(solver='liblinear').fit(X_train, y_train)
     subamostragem_pred = subamostragem.predict(X_test)
     #AQUI ESTÁ DANDO ERRO PORQUE TEMPOS QUE USAR SOMENTE AS COLUNAS NUMÉRICAS
-    st.subheader(metrics.accuracy_score(y_test, subamostragem_pred))
+    st.subheader('Precisão dos dados: {}'.format(metrics.accuracy_score(y_test, subamostragem_pred)))
+    st.subheader('F1 score simplesmente mede a porcentagem de previsões corretas que um modelo de aprendizado de máquina fez')
+    st.subheader('f1 score: {}'.format(metrics.accuracy_score(y_test, subamostragem_pred)))
     
 
