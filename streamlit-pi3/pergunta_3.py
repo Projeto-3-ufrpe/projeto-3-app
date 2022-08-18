@@ -2,6 +2,7 @@ import streamlit as st
 from dataframe import Dados
 import pandas as pd
 import plotly.express as px
+import dataframe
 
 def pergunta3():
 
@@ -14,7 +15,7 @@ def pergunta3():
     
     st.write("***")
 
-    dataframe = pd.read_csv('../heart_2020_cleaned.csv')
+    df = dataframe.Dados.dataframe
 
 
     st.markdown('### Fumante ')
@@ -22,7 +23,7 @@ def pergunta3():
     #count_sexFemale = int(dataframe[(dataframe["Smoking"] == "Yes") & (dataframe["Sex"] == "Female") & (dataframe["HeartDisease"] == "Yes")]["Smoking"].count())
     #print(count_sexMale, '\n', count_sexFemale)
 
-    fig_smoking = px.histogram(dataframe, x="Smoking",
+    fig_smoking = px.histogram(df, x="Smoking",
              color='HeartDisease', barmode='group',
              text_auto='.2s',
              labels={'Sex':'Sexo','Smoking':'Fumante', 'HeartDisease': 'Doença Cardíaca'},
@@ -33,7 +34,7 @@ def pergunta3():
     st.write(fig_smoking)
 
     st.markdown('### Alcool ')
-    fig_Alcohol = px.histogram(dataframe, x="AlcoholDrinking",
+    fig_Alcohol = px.histogram(df, x="AlcoholDrinking",
             color='HeartDisease', barmode='group',
             text_auto='.2s',
             labels={'Sex':'Sexo','AlcoholDrinking':'Alcool', 'HeartDisease': 'Doença Cardíaca'},
@@ -44,7 +45,7 @@ def pergunta3():
     st.write(fig_Alcohol)
 
     st.markdown('### Hora de Dormir ')
-    figsleeptime = px.histogram(dataframe, x="SleepTime", barmode='group',
+    figsleeptime = px.histogram(df, x="SleepTime", barmode='group',
              color='HeartDisease', histfunc='count', text_auto='.2s',
              labels={'SleepTime':'Horas de Sono', 'HeartDisease': 'Doença Cardíaca'},
              height=400)
@@ -54,28 +55,28 @@ def pergunta3():
     st.write(figsleeptime)
 
     st.markdown('### IMC ')
-    dataframe['BMI'] = dataframe['BMI'].astype('float')
-    dataframe.loc[dataframe['BMI'] <= 18.5, 'classificacao'] = 'MAGREZA'
-    dataframe.loc[(dataframe['BMI'] >= 18.5) & (dataframe['BMI'] <= 24.9), 'classificacao'] = 'NORMAL'
-    dataframe.loc[(dataframe['BMI'] >= 25.0) & (dataframe['BMI'] <= 29.9), 'classificacao'] = 'SOBREPESO'
-    dataframe.loc[(dataframe['BMI'] >= 30.0) & (dataframe['BMI'] <= 39.9), 'classificacao'] = 'OBESIDADE'
-    dataframe.loc[dataframe['BMI'] >= 40.0, 'classificacao'] = 'OBESIDADE GRAVE'
+    df['BMI'] = df['BMI'].astype('float')
+    df.loc[df['BMI'] <= 18.5, 'classificacao'] = 'MAGREZA'
+    df.loc[(df['BMI'] >= 18.5) & (df['BMI'] <= 24.9), 'classificacao'] = 'NORMAL'
+    df.loc[(df['BMI'] >= 25.0) & (df['BMI'] <= 29.9), 'classificacao'] = 'SOBREPESO'
+    df.loc[(df['BMI'] >= 30.0) & (df['BMI'] <= 39.9), 'classificacao'] = 'OBESIDADE'
+    df.loc[df['BMI'] >= 40.0, 'classificacao'] = 'OBESIDADE GRAVE'
 
 
     count_magreza = int(
-        dataframe[(dataframe["classificacao"] == "MAGREZA")]["classificacao"].count())
+        df[(df["classificacao"] == "MAGREZA")]["classificacao"].count())
 
     count_normal = int(
-        dataframe[(dataframe["classificacao"] == "NORMAL")]["classificacao"].count())
+        df[(df["classificacao"] == "NORMAL")]["classificacao"].count())
 
     count_obesidade = int(
-        dataframe[(dataframe["classificacao"] == "OBESIDADE")]["classificacao"].count())
+        df[(df["classificacao"] == "OBESIDADE")]["classificacao"].count())
 
     count_obesidadegrave = int(
-        dataframe[(dataframe["classificacao"] == "OBESIDADE GRAVE")]["classificacao"].count())
+        df[(df["classificacao"] == "OBESIDADE GRAVE")]["classificacao"].count())
 
     count_sobrepeso = int(
-        dataframe[(dataframe["classificacao"] == "SOBREPESO")]["classificacao"].count())
+        df[(df["classificacao"] == "SOBREPESO")]["classificacao"].count())
     
     placeholder = st.empty()
 
@@ -113,7 +114,7 @@ def pergunta3():
                 delta=count_sobrepeso,
         )
 
-    fig_bmi = px.histogram(dataframe, x='classificacao',
+    fig_bmi = px.histogram(df, x='classificacao',
             y='BMI', color="HeartDisease", barmode='group',
             histfunc='count', text_auto='.2s',
             labels={'classificacao':'IMC', 'HeartDisease': 'Doença Cardíaca'},
@@ -124,7 +125,7 @@ def pergunta3():
     st.write(fig_bmi)
 
     st.markdown('### Idade ')
-    figagecategory = px.histogram(dataframe, x="AgeCategory", color="HeartDisease", barmode='group',
+    figagecategory = px.histogram(df, x="AgeCategory", color="HeartDisease", barmode='group',
              histfunc='count', text_auto='.2s',
              labels={'AgeCategory':'Idade', 'HeartDisease': 'Doença Cardíaca'},
              height=400)
