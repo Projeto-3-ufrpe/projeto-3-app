@@ -3,7 +3,7 @@ import dataframe
 import sklearn
 import pandas as pd
 import numpy as np
-from sklearn import model_selection, dummy, metrics, utils, linear_model
+from sklearn import model_selection, dummy, metrics, utils, linear_model, ensemble
 def desbalanceamento_dados():
     st.title("A Partir dos dados abaixo podemos notar que há um desbalanceamento dos dados")
     df = dataframe.Dados.dataframe_somente_com_colunas_numericas
@@ -22,7 +22,6 @@ def desbalanceamento_dados():
     st.subheader('# Test score: {}'.format(metrics.accuracy_score(y_test, dummy_pred)))
     st.subheader("# Esta alta taxa implica que os dados estão desbalanceados, logo precisamos resolver isso!")
     st.subheader("#Para isto, vamos usar a técnina de Classe minoritária sobreamostra")
-    st.subheader("Referência: https://towardsdatascience.com/methods-for-dealing-with-imbalanced-data-5b761be45a18#:~:text=Imbalanced%20classes%20are%20a%20common%20problem%20in%20machine%20learning%20classification,spam%20filtering%2C%20and%20fraud%20detection")
     X = pd.concat([X_train, y_train], axis=1)
     sem_doencas_do_coracao = X[X.HeartDisease==0]
     com_doencas_do_coracao = X[X.HeartDisease==1]
@@ -35,10 +34,26 @@ def desbalanceamento_dados():
     # st.dataframe(combinacao_expandido_com_sem_doencas)
     #TESTANDO A REGRESSAO LOGISTICA NOS DADOS
     subamostragem = linear_model.LogisticRegression(solver='liblinear').fit(X_train, y_train)
+    # subamostragem = ensemble.RandomForestClassifier(n_estimators=10).fit(X_train, y_train)
     subamostragem_pred = subamostragem.predict(X_test)
+    st.subheader('''Notas:
+     - F1 score simplesmente mede a porcentagem de previsões corretas que um modelo de aprendizado de máquina fez
+     - O recall é intuitivamente a habilidade do classificador em encontrar todas as amostras positivas. O melhor valor é 1 e o pior valor é 0.
+    ''')
     #AQUI ESTÁ DANDO ERRO PORQUE TEMPOS QUE USAR SOMENTE AS COLUNAS NUMÉRICAS
+    st.title('Regressão Logística')
     st.subheader('Precisão dos dados: {}'.format(metrics.accuracy_score(y_test, subamostragem_pred)))
-    st.subheader('F1 score simplesmente mede a porcentagem de previsões corretas que um modelo de aprendizado de máquina fez')
+
     st.subheader('f1 score: {}'.format(metrics.accuracy_score(y_test, subamostragem_pred)))
+    st.subheader('recall store: {}'.format(metrics.recall_score(y_test, subamostragem_pred)))
+    st.subheader("Note que o nosso recall score está muito baixo usando a regressão logística, então vamos testar a RandomForest")
+    st.title("RandomForest")
+    subamostragem = ensemble.RandomForestClassifier(n_estimators=10).fit(X_train, y_train)
+    subamostragem_pred = subamostragem.predict(X_test)
+    st.subheader('Precisão dos dados: {}'.format(metrics.accuracy_score(y_test, subamostragem_pred)))
+    st.subheader('f1 score: {}'.format(metrics.accuracy_score(y_test, subamostragem_pred)))
+    st.subheader('recall store: {}'.format(metrics.recall_score(y_test, subamostragem_pred)))
+    st.subheader('Já em randomForest, o f1 e a precisão diminuiram um pouco, mas o recall aumentou um pouco')
+    st.subheader("Referência: https://towardsdatascience.com/methods-for-dealing-with-imbalanced-data-5b761be45a18#:~:text=Imbalanced%20classes%20are%20a%20common%20problem%20in%20machine%20learning%20classification,spam%20filtering%2C%20and%20fraud%20detection")
     
 
