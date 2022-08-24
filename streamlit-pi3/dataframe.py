@@ -12,7 +12,7 @@ def tratamento_csv(dataframe,list_columns):
     return dataframe
 
 class Dados:
-    dataframe = pd.read_csv('./heart_2020_cleaned.csv')
+    dataframe = pd.read_parquet('../heart_2020_cleaned.parquet')
     dataframe = tratamento_csv(dataframe, ['HeartDisease', 'Smoking', 'AlcoholDrinking', 'KidneyDisease', 'SkinCancer', 'Asthma', 'Diabetic', 'PhysicalActivity','DiffWalking','Stroke'])
     dataframe_somente_com_colunas_numericas = dataframe.drop(columns=['AgeCategory','GenHealth', 'Race','Sex', ])
     dataframe['SkinCancer'] = np.where(dataframe['SkinCancer'] == 'Yes', 1, dataframe['SkinCancer'])
