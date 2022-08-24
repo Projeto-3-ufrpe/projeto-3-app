@@ -46,7 +46,7 @@ elif selection == "🧠 Doenças vindas de outros orgãos":
     pergunta_2.pergunta_2()
 elif selection == "⛹️ Hábitos":
     pergunta_3.pergunta3()
-elif selection == "🎲 Outlier":
+elif selection == "📈 Outlier":
     outlier.outlier()
 elif selection == "🤖 Tratando o desbalanceamento dos dados":
     tratamento_desbalanceamento_dados.desbalanceamento_dados()
