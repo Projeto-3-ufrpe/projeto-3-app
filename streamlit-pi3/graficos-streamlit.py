@@ -3,13 +3,13 @@ from tkinter import W
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import pergunta_1, pergunta_2, pergunta_3, outlier
+import pergunta_1, pergunta_2, pergunta_3, outlier, algoritmos
 import dataframe
 import tratamento_desbalanceamento_dados
 
 
 
-opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier"]
+opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "Algoritmos"]
 with st.sidebar:
     st.markdown('# 🆙GRUPO UPSCALE ')
     st.markdown('## MENU PRINCIPAL 👈')
@@ -50,3 +50,5 @@ elif selection == "📈 Outlier":
     outlier.outlier()
 elif selection == "🤖 Tratando o desbalanceamento dos dados":
     tratamento_desbalanceamento_dados.desbalanceamento_dados()
+elif selection == "Algoritmos":
+    algoritmos.algoritmos()
