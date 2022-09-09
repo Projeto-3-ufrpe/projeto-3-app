@@ -3,7 +3,7 @@ import plotly.express as px
 import streamlit as st
 import seaborn as sns
 import pandas as pd
-from dataframe import Dados
+import dataframe
 
 def graph(df, selection):
     bmi = px.box(df ,y=df[selection])
@@ -12,12 +12,9 @@ def graph(df, selection):
 def outlier():
     st.title('📈 Detecção de Outliers')
 
-    df = pd.read_parquet('../heart_2020_cleaned.parquet')
+    df = dataframe.Dados.dataframe
 
-    #df = dataframe.Dados.dataframe
-
-    st.markdown('### Número de registros e recursos no conjunto de dados')
-    st.write(df.shape)
+    st.markdown(f'### Número de Linhas e Colunas {df.shape}')
 
     st.markdown("### Número de linhas duplicadas")
 
@@ -29,7 +26,7 @@ def outlier():
     st.write("Número de linhas duplicadas após a remoção das duplicadas:", duplicata_rows.shape) 
     
     st.markdown("### Valores nulos")
-    st.write(f"Valores nulos: {df.isnull().sum()}")
+    st.write(df.isnull().sum())
 
     #Detecção de Outliers
     st.markdown("### Análise de outliers com variáveis númericas")
@@ -54,7 +51,7 @@ def outlier():
     st.write(IQR) 
 
     data2 = df[~((df<(Q1-1.5*IQR))|(df>(Q3+1.5*IQR))).any(axis= 1)] 
-    st.write(data2.shape)
+    st.write(f"Resultado após o cálculo de estatística com o interquartil: {data2.shape}.")
 
     st.markdown("### Mapa de Correlação")
     pearsonCorr = df.corr(method='spearman') 
