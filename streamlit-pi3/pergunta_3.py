@@ -33,6 +33,18 @@ def pergunta3():
     fig_smoking.update_xaxes(categoryorder='category ascending',showline=True, showgrid=False)
     st.write(fig_smoking)
 
+    st.markdown('### Diabético ')
+    
+    fig_diabetic = px.histogram(df, x="Diabetic",
+             color='HeartDisease', barmode='group',
+             text_auto='.2s',
+             labels={'Sex':'Sexo','Diabetic':'Diabético', 'HeartDisease': 'Doença Cardíaca'},
+             height=400)
+    fig_diabetic.update_layout(yaxis_title='Quantidade de indivíduos')
+    fig_diabetic.update_yaxes(showline=True, showgrid=False)
+    fig_diabetic.update_xaxes(categoryorder='category ascending',showline=True, showgrid=False)
+    st.write(fig_diabetic)
+
     st.markdown('### Alcool ')
     fig_Alcohol = px.histogram(df, x="AlcoholDrinking",
             color='HeartDisease', barmode='group',
