@@ -6,10 +6,12 @@ import matplotlib.pyplot as plt
 import pergunta_1, pergunta_2, pergunta_3, outlier, algoritmos
 import dataframe
 import tratamento_desbalanceamento_dados
+import featureImportance
+import categoricos_numericos
 
 
 
-opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "Algoritmos"]
+opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "Algoritmos", "🔢 De categoricos para numericos", "🤝 Feature Importance"]
 with st.sidebar:
     st.markdown('# 🆙GRUPO UPSCALE ')
     st.markdown('## MENU PRINCIPAL 👈')
@@ -50,5 +52,9 @@ elif selection == "📈 Outlier":
     outlier.outlier()
 elif selection == "🤖 Tratando o desbalanceamento dos dados":
     tratamento_desbalanceamento_dados.desbalanceamento_dados()
+elif selection == "🔢 De categoricos para numericos":
+    categoricos_numericos.categoricos_to_numericos()
+elif selection == "🤝 Feature Importance":
+    featureImportance.featureImportance()
 elif selection == "Algoritmos":
     algoritmos.algoritmos()
