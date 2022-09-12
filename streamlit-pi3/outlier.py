@@ -14,20 +14,6 @@ def outlier():
 
     df = dataframe.Dados.dataframe
 
-    st.markdown(f'### Número de Linhas e Colunas {df.shape}')
-
-    st.markdown("### Número de linhas duplicadas")
-
-    duplicado_rows = df[df.duplicated()] 
-    st.write("Número de linhas duplicadas:", duplicado_rows.shape)
-
-    df = df.drop_duplicates() 
-    duplicata_rows = df[df.duplicated()] 
-    st.write("Número de linhas duplicadas após a remoção das duplicadas:", duplicata_rows.shape) 
-    
-    st.markdown("### Valores nulos")
-    st.write(df.isnull().sum())
-
     #Detecção de Outliers
     st.markdown("### Análise de outliers com variáveis númericas")
     selection = st.selectbox("Selecione uma categoria", ["BMI", "PhysicalHealth", "MentalHealth", "SleepTime"])
