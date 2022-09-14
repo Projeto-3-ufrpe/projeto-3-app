@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+
+
+dataframe_nao_numerico = pd.read_parquet('../heart_2020_cleaned.parquet')
 def tratamento_csv(dataframe,list_columns):
     #nas colunas booleanas trocar 'sim' e 'não' por 0 e 1
     for column in list_columns:

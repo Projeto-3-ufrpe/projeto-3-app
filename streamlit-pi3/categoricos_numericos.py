@@ -1,3 +1,4 @@
+from cProfile import label
 import dataframe
 import streamlit as st
 import dataframe
@@ -5,25 +6,107 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 import pandas as pd
 import numpy as np
 
-df = dataframe.Dados.dataframe
+df = dataframe.dataframe_nao_numerico
+print(df.head())
 labelEncoder = LabelEncoder()
 oneHotEncoder = OneHotEncoder()
 
+diabeticos = {
+    'Yes': 'Yes',
+    'No': 'No',
+    'No, borderline diabetes' : 'No'
+}
 
-class numericos:
+def returnDataFrame():
+    labels_heartD = labelEncoder.fit_transform(df.HeartDisease)
+    df['HeartDisease'] = labels_heartD
+    print(df)
+    labels_smoking = labelEncoder.fit_transform(df.Smoking)
+    df['Smoking'] = labels_smoking
+    print(df)
+    labels_stroke = labelEncoder.fit_transform(df.Stroke)
+    df['Stroke'] = labels_stroke
+    print(df)
+    labels_diffwalk = labelEncoder.fit_transform(df.DiffWalking)
+    df['DiffWalking'] = labels_diffwalk
     labels_sex = labelEncoder.fit_transform(df.Sex)
     df['Sex'] = labels_sex
     dataframa = df
+    print(df)
+    df.Diabetic = df.Diabetic.map(diabeticos)
+    print(df.Diabetic)
+    labels_diabeticos = labelEncoder.fit_transform(df.Diabetic)
+    df['Diabetic'] = labels_diabeticos
+    labels_physical = labelEncoder.fit_transform(df.PhysicalActivity)
+    df['PhysicalActivity'] = labels_physical
+    labels_asma = labelEncoder.fit_transform(df.Asthma)
+    df['Asthma'] = labels_asma
+    labels_kidney = labelEncoder.fit_transform(df.KidneyDisease)
+    df['KidneyDisease'] = labels_kidney
+    labels_cancer = labelEncoder.fit_transform(df.SkinCancer)
+    df['SkinCancer'] = labels_cancer
+    labels_alcohol = labelEncoder.fit_transform(df.AlcoholDrinking)
+    df['AlcoholDrinking'] = labels_alcohol
+    print(df)
+
     feature_Arr = pd.get_dummies(dataframa['AgeCategory'])
     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
     dataframa = dataframa.drop('AgeCategory', axis=1)
+    print(dataframa['Race'])
     feature_Arr = pd.get_dummies(dataframa['Race'])
     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
     dataframa = dataframa.drop('Race', axis=1)
+    print(dataframa)
     feature_Arr = pd.get_dummies(dataframa['GenHealth'])
     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
     dataframa = dataframa.drop('GenHealth', axis=1)
-    dataframe_numerico = dataframa
+    print(dataframa)
+    return dataframa
+# class numericos:
+#     labels_heartD = labelEncoder.fit_transform(df.HeartDisease)
+#     df['HeartDisease'] = labels_heartD
+#     print(df)
+#     labels_smoking = labelEncoder.fit_transform(df.Smoking)
+#     df['Smoking'] = labels_smoking
+#     print(df)
+#     labels_stroke = labelEncoder.fit_transform(df.Stroke)
+#     df['Stroke'] = labels_stroke
+#     print(df)
+#     labels_diffwalk = labelEncoder.fit_transform(df.DiffWalking)
+#     df['DiffWalking'] = labels_diffwalk
+#     labels_sex = labelEncoder.fit_transform(df.Sex)
+#     df['Sex'] = labels_sex
+#     dataframa = df
+#     print(df)
+#     df.Diabetic = df.Diabetic.map(diabeticos)
+#     print(df.Diabetic)
+#     labels_diabeticos = labelEncoder.fit_transform(df.Diabetic)
+#     df['Diabetic'] = labels_diabeticos
+#     labels_physical = labelEncoder.fit_transform(df.PhysicalActivity)
+#     df['PhysicalActivity'] = labels_physical
+#     labels_asma = labelEncoder.fit_transform(df.Asthma)
+#     df['Asthma'] = labels_asma
+#     labels_kidney = labelEncoder.fit_transform(df.KidneyDisease)
+#     df['KidneyDisease'] = labels_kidney
+#     labels_cancer = labelEncoder.fit_transform(df.SkinCancer)
+#     df['SkinCancer'] = labels_cancer
+#     labels_alcohol = labelEncoder.fit_transform(df.AlcoholDrinking)
+#     df['AlcoholDrinking'] = labels_alcohol
+#     print(df)
+
+#     feature_Arr = pd.get_dummies(dataframa['AgeCategory'])
+#     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
+#     dataframa = dataframa.drop('AgeCategory', axis=1)
+#     print(dataframa['Race'])
+#     feature_Arr = pd.get_dummies(dataframa['Race'])
+#     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
+#     dataframa = dataframa.drop('Race', axis=1)
+#     print(dataframa)
+#     feature_Arr = pd.get_dummies(dataframa['GenHealth'])
+#     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
+#     dataframa = dataframa.drop('GenHealth', axis=1)
+#     print(dataframa)
+#     dataframe_numerico = dataframa
     
 def categoricos_to_numericos():
     st.markdown('# Passando atributos categorigos para numericos')
@@ -39,10 +122,35 @@ def categoricos_to_numericos():
     
     st.markdown('___')
 
-    st.markdown('#### Primeiramente iremos fazer a conversão com a coluna "Sex". Sexo feminino será representado pelo 0 e o masculino pelo 1.')
+    st.markdown('#### Primeiramente iremos fazer a conversão das colunas "HeartDisease", "Smoking", "Stroke", "DiffWalking", "Diabetic", "PhysicalActivity", "Asthma", "Kidney Disease", "SkinCancer", "Alcohol Drinking" e "Sex"')
+    st.markdown('#### As categorias possiveis dentro desses atributos são binárias, ou seja, só existem duas opções. Uma delas será representada pelo 0 e a outra pelo 1.')
+    labels_heartD = labelEncoder.fit_transform(df.HeartDisease)
+    df['HeartDisease'] = labels_heartD
+    labels_smoking = labelEncoder.fit_transform(df.Smoking)
+    df['Smoking'] = labels_smoking
+    labels_stroke = labelEncoder.fit_transform(df.Stroke)
+    df['Stroke'] = labels_stroke
+    labels_diffwalk = labelEncoder.fit_transform(df.DiffWalking)
+    df['DiffWalking'] = labels_diffwalk
     labels_sex = labelEncoder.fit_transform(df.Sex)
     df['Sex'] = labels_sex
+    dataframa = df
+    df.Diabetic = df.Diabetic.map(diabeticos)
+    labels_diabeticos = labelEncoder.fit_transform(df.Diabetic)
+    df['Diabetic'] = labels_diabeticos
+    labels_physical = labelEncoder.fit_transform(df.PhysicalActivity)
+    df['PhysicalActivity'] = labels_physical
+    labels_asma = labelEncoder.fit_transform(df.Asthma)
+    df['Asthma'] = labels_asma
+    labels_kidney = labelEncoder.fit_transform(df.KidneyDisease)
+    df['KidneyDisease'] = labels_kidney
+    labels_cancer = labelEncoder.fit_transform(df.SkinCancer)
+    df['SkinCancer'] = labels_cancer
+    labels_alcohol = labelEncoder.fit_transform(df.AlcoholDrinking)
+    df['AlcoholDrinking'] = labels_alcohol
     st.dataframe(df.head())
+
+    st.markdown('#### ')
     st.markdown('#### A coluna "SEX" foi a unica na qual foi possivel aplicar o LabelEncoder. A partir de agora iremos trabalhar com o OneHotEncode.')
     st.markdown(" ")
     st.markdown('#### Agora iremos adicionar o "dummies" a categoria "AgeCategory".')
@@ -54,7 +162,8 @@ def categoricos_to_numericos():
     print(feature_Arr)
     st.markdown(" ")
     st.markdown('#### "Dummies" para a categoria "Race".')
-    feature_Arr = pd.get_dummies(dataframa['Race'])
+    
+    feature_Arr = dataframa['Race'].str.get_dummies()
     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
     dataframa = dataframa.drop('Race', axis=1)
     st.dataframe(dataframa.head())
@@ -62,5 +171,8 @@ def categoricos_to_numericos():
     feature_Arr = pd.get_dummies(dataframa['GenHealth'])
     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
     dataframa = dataframa.drop('GenHealth', axis=1)
+    print(df.head())
     st.dataframe(dataframa.head())
+
+    return dataframa
 

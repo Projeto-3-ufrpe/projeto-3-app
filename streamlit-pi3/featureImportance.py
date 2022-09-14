@@ -7,7 +7,7 @@ import numpy as np
 from sklearn import model_selection, dummy, metrics, utils, linear_model, ensemble, feature_selection
 
 class feature:
-    df = categoricos_numericos.numericos.dataframe_numerico
+    df = categoricos_numericos.returnDataFrame()
     caracteristicas = df.drop('HeartDisease', axis=1)
     previsor = df['HeartDisease']
 
@@ -39,14 +39,14 @@ def featureImportance():
 
 
     #DADOS
-    df = categoricos_numericos.numericos.dataframe_numerico
+    df = categoricos_numericos.returnDataFrame()
     print(df.info())
     caracteristicas = df.drop('HeartDisease', axis=1)
     previsor = df['HeartDisease']
 
     #F_REGRESSION
     st.markdown('# O "f_regression" encontra os melhores features através de regressão linear.')
-    f_regression = feature_selection.SelectKBest(score_func=feature_selection.f_regression, k=25)
+    f_regression = feature_selection.SelectKBest(score_func=feature_selection.f_regression, k=10)
     fit = f_regression.fit(caracteristicas, previsor)
     features = fit.transform(caracteristicas)
     cols = fit.get_support(indices=True)
@@ -54,7 +54,7 @@ def featureImportance():
 
     #CHI2
     st.markdown('# O "CHI2" encontra os melhores features através de regressão linear.')
-    chi2 = feature_selection.SelectKBest(score_func=feature_selection.chi2, k=25)
+    chi2 = feature_selection.SelectKBest(score_func=feature_selection.chi2, k=10)
     fit = chi2.fit(caracteristicas, previsor)
     features = fit.transform(caracteristicas)
     cols = fit.get_support(indices=True)
@@ -63,7 +63,7 @@ def featureImportance():
     #RFE
     st.markdown('# O "RFE" ou Recursive Feature Elimination trabalha encontrando e removendo features.')
     model = linear_model.LogisticRegression(max_iter=30000)
-    rfe = feature_selection.RFE(model, n_features_to_select=25)
+    rfe = feature_selection.RFE(model, n_features_to_select=10)
     fit = rfe.fit(caracteristicas, previsor)
     cols = fit.get_support(indices=True)
     st.dataframe(df.iloc[:,cols])
