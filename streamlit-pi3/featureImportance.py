@@ -7,7 +7,7 @@ import numpy as np
 from sklearn import model_selection, dummy, metrics, utils, linear_model, ensemble, feature_selection
 
 class feature:
-    df = categoricos_numericos.returnDataFrame()
+    df = dataframe.Dados.dataframe
     caracteristicas = df.drop('HeartDisease', axis=1)
     previsor = df['HeartDisease']
 
