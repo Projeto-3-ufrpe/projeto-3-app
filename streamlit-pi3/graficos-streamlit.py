@@ -3,7 +3,8 @@ from tkinter import W
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import pergunta_1, pergunta_2, pergunta_3, outlier, pre_processamento
+import pergunta_1, pergunta_2, pergunta_3 
+import outlier, pre_processamento, Algoritmos
 import dataframe
 import tratamento_desbalanceamento_dados
 import categoricos_numericos
@@ -11,7 +12,7 @@ import matriz_de_confusao
 
 
 
-opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "😵‍💫 Matriz de Confusão"]
+opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "💼 Algoritmos"]
 with st.sidebar:
     st.markdown('# 🆙GRUPO UPSCALE ')
     st.markdown('## MENU PRINCIPAL 👈')
@@ -59,5 +60,5 @@ elif selection == "🤝 Feature Importance":
     # featureImportance.featureImportance()
 elif selection == "⚙️ Pré-Processamento":
     pre_processamento.pre_processamento()
-elif selection == "😵‍💫 Matriz de Confusão":
-    matriz_de_confusao.matrizDeConfusao()
+elif selection == "💼 Algoritmos":
+    Algoritmos.algoritmos()

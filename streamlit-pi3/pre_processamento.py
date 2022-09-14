@@ -52,16 +52,8 @@ def pre_processamento():
     antes_balanceamento['HeartDisease'] = antes_balanceamento['HeartDisease'].replace({1:'Sim',0:'Não'}).astype(str)
     depois_balanceamento['HeartDisease'] = antes_balanceamento['HeartDisease'].replace({1:'Sim',0:'Não'}).astype(str)
 
-    st.text_area(label='Dados não balanceados.', value='Observando o gráfico abaixo podemos notar que o número de casos confirmados de doenças cardácas é muito menor do que os casos não confirmados, dessa maneira seria difícil encontrar um modelo que trouxesse um resultado satisfatório.', height=100)
     bar_plotly(antes_balanceamento, "Pré-Balanceamento")
-    #fig1 = px.bar(antes_balanceamento, x="HeartDisease", y="qtd_HeartDisease", color="HeartDisease", title="Antes do balanceamento", labels={ 'qtd_HeartDisease': 'Quantidade de ocorrências', 'HeartDisease': 'Ocorrência de doenças cardíacas', 'no_HeartDisease': 'Não', 'yes_HeartDisease': 'Sim' },text_auto=True,color_discrete_map={'some_group': 'red','some_other_group': 'green'})
-    #fig1.update_yaxes(showline=True, showgrid=False)
-    #fig1.update_xaxes(categoryorder='category ascending',showline=True, showgrid=False)
-    #st.plotly_chart(fig1,use_container_width=True)
+    st.text_area(label="", value='Analisando o gráfico abaixo notamos que o número de casos confirmados com doenças cardíacas é muito menor do que os casos não confirmados', height=100)
 
-    st.text_area(label='Dados  balanceados.', value='Foi utilizado o SMOTE(Synthetic Minority Oversampling Technique) para balancear os dados e assim obter melhores resultados. Como o número de casos positivos é muito menor  do que os de casos negativos, o SMOTE foi ideal para esse balanceamento, já que ele ira preencher com mais casos positivos  nosso dataframe', height=150)
     bar_plotly(depois_balanceamento,'Pós-Balanceamento')
-    #fig2 = px.bar(depois_balanceamento, x="HeartDisease", y="qtd_HeartDisease", color="HeartDisease", title="Depois do balanceamento", labels={ 'qtd_HeartDisease': 'Quantidade de ocorrências', 'HeartDisease': 'Ocorrência de doenças cardíacas', 'no_HeartDisease': 'Não', 'yes_HeartDisease': 'Sim' },text_auto=True,color_discrete_map={'some_group': 'red','some_other_group': 'green'})
-    #fig2.update_yaxes(showline=True, showgrid=False)
-    #fig2.update_xaxes(categoryorder='category ascending',showline=True, showgrid=False)
-    #st.plotly_chart(fig2,use_container_width=True)
+    st.text_area(label="", value='Para fazer o balanceamento foi usado o SMOTE(Synthetic Minority Oversampling Technique) para obter melhores resultados. Já que o número de casos positivos é muito menor  do que os de casos negativos.', height=150)
