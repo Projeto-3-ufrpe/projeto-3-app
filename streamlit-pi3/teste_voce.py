@@ -1,4 +1,5 @@
 import streamlit as st
+from Algoritmos import regressao_logistica_treinada
 from dataframe import Dados
 import dataframe
 import pandas as pd
@@ -76,3 +77,5 @@ def testeVoce():
         linha_com_tratamento = dataframe.returnDataFrame(linha_sem_tratamento)
         st.write(linha_com_tratamento)
         #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+        regressao_logistica = regressao_logistica_treinada()
+        previsao = regressao_logistica.predict(linha_com_tratamento)

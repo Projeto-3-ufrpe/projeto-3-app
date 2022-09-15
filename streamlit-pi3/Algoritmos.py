@@ -11,6 +11,18 @@ from sklearn.model_selection import train_test_split,cross_val_score
 from sklearn.linear_model import LinearRegression,LogisticRegression
 from sklearn.metrics import plot_confusion_matrix, classification_report,confusion_matrix
 
+def regressao_logistica_treinada():
+    df = dataframe.Dados.dataframe
+    x  = df.drop('HeartDisease', axis=1)#'AgeCategory',
+    y = df['HeartDisease']
+    # st.write(X)
+    #Treinando o modelo
+    X_train, X_test, y_train, y_test = train_test_split(x, y, train_size=0.3, random_state=42)
+    logreg_pipeline = Pipeline(steps = [('scale',StandardScaler()),('LR',LogisticRegression(random_state=42))])
+    logreg_pipeline.fit(x, y)
+    # predictionsLR = logreg_pipeline.predict(x_test)
+    return logreg_pipeline
+
 def calculate_score_logistic_regression( x, y, x_test, y_test, matrix):
     logreg_pipeline = Pipeline(steps = [('scale',StandardScaler()),('LR',LogisticRegression(random_state=42))])
     logreg_pipeline.fit(x, y)
