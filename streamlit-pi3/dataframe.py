@@ -93,8 +93,8 @@ def balanceamentoDados(df):
 class Dados:
     
     dataframe = pd.read_parquet('../heart_2020_cleaned.parquet')
-    dataframe = balanceamentoDados(dataframe)
     dataframe = returnDataFrame(dataframe)
+    dataframe = balanceamentoDados(dataframe)
     # dataframe_somente_com_colunas_numericas = dataframe.drop(columns=['AgeCategory','GenHealth', 'Race','Sex', ])
     # dataframe['SkinCancer'] = np.where(dataframe['SkinCancer'] == 'Yes', 1, dataframe['SkinCancer'])
     # dataframe['SkinCancer'] = np.where(dataframe['SkinCancer'] == 'No', 0, dataframe['SkinCancer'])

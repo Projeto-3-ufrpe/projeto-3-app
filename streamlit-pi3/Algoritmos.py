@@ -46,15 +46,22 @@ def algoritmos():
 
     df = dataframe.Dados.dataframe
 
-    X  = df[['Smoking','AlcoholDrinking','Stroke','DiffWalking','Sex','Asthma','Diabetic','KidneyDisease','SkinCancer','BMI']]#'AgeCategory',
+    X  = df.drop('HeartDisease', axis=1)#'AgeCategory',
     y = df['HeartDisease']
-
+    print("***************Dataframe: ")
+    st.write(X)
     #Treinando o modelo
     X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.3, random_state=42)
 
     #Balanceando os dados com Smote 
-    oversample = SMOTE()
-    X_train_resh, y_train_resh = oversample.fit_resample(X_train, y_train.ravel())
+    # oversample = SMOTE()
+    # X_train_resh, y_train_resh = oversample.fit_resample(X_train, y_train.ravel())
 
-    calculate_score_random_forest(X_train_resh, y_train_resh, X_test, y_test)
-    calculate_score_logistic_regression(X_train_resh, y_train_resh, X_test, y_test)
+
+    calculate_score_random_forest(X_train, y_train, X_test, y_test)
+    calculate_score_logistic_regression(X_train, y_train, X_test, y_test)
+
+    st.markdown('___')
+    st.markdown('# Conclusão')
+    st.markdown('### Considerando que iremos trabalhar com a previsão do diagnostico de doenças, iremos dar mais valor ao algoritmo que retornar mais falsos positivos em relação aos falsos negativos.')
+    st.markdown('### Na analise feita, podemos observar que o algoritmo de "RandomForest" retornou 22.747 falsos positivos enquanto o algoritmo de "Regressão Logistica" retornou 39.031 falsos positivos e levando isso em consideração fica evidente que o algoritmo maais confiavel é o de Regressão Logistica')
