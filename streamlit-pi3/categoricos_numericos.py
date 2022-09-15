@@ -1,5 +1,4 @@
 from cProfile import label
-import dataframe
 import streamlit as st
 import dataframe
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder

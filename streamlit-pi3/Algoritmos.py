@@ -11,22 +11,24 @@ from sklearn.model_selection import train_test_split,cross_val_score
 from sklearn.linear_model import LinearRegression,LogisticRegression
 from sklearn.metrics import plot_confusion_matrix, classification_report,confusion_matrix
 
-def calculate_score_logistic_regression( x, y, x_test, y_test):
+def calculate_score_logistic_regression( x, y, x_test, y_test, matrix):
     logreg_pipeline = Pipeline(steps = [('scale',StandardScaler()),('LR',LogisticRegression(random_state=42))])
     logreg_pipeline.fit(x, y)
     predictionsLR = logreg_pipeline.predict(x_test)
     lgrmc = confusion_matrix(y_test, predictionsLR)
     logreg_cv = cross_val_score(logreg_pipeline, x, y, cv=10, scoring='f1')
+    if matrix:
+        matrix(lgrmc, 'Logistic Regression', logreg_cv)
 
-    matrix(lgrmc, 'Logistic Regression', logreg_cv)
-
-def calculate_score_random_forest( x, y, x_test, y_test):
+def calculate_score_random_forest( x, y, x_test, y_test, matrix):
     rf_pipeline = Pipeline(steps = [('scale',StandardScaler()),('RF',RandomForestClassifier(random_state=42))])
     rf_pipeline.fit(x, y)
     predictionsRF = rf_pipeline.predict(x_test)
     rfcm = confusion_matrix(y_test, predictionsRF)
     rf_cv = cross_val_score(rf_pipeline, x, y, cv=10, scoring='f1')
-    matrix(rfcm, 'Random Forest', rf_cv)
+    if matrix:
+        matrix(rfcm, 'Random Forest', rf_cv)
+
 
 def matrix(classifier, classifierName, score):
     score = score.mean()
@@ -48,8 +50,7 @@ def algoritmos():
 
     X  = df.drop('HeartDisease', axis=1)#'AgeCategory',
     y = df['HeartDisease']
-    print("***************Dataframe: ")
-    st.write(X)
+    # st.write(X)
     #Treinando o modelo
     X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.3, random_state=42)
 

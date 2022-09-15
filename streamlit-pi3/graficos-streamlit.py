@@ -1,5 +1,5 @@
-from ast import With
-from tkinter import W
+# from ast import With
+# from tkinter import W
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,11 +8,11 @@ import outlier, pre_processamento, Algoritmos
 import dataframe
 import tratamento_desbalanceamento_dados
 import categoricos_numericos
-import matriz_de_confusao
+from teste_voce import testeVoce
 
 
 
-opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "💼 Algoritmos"]
+opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "💼 Algoritmos","❤️ Teste com seus dados!"]
 with st.sidebar:
     st.markdown('# 🆙GRUPO UPSCALE ')
     st.markdown('## MENU PRINCIPAL 👈')
@@ -62,3 +62,5 @@ elif selection == "⚙️ Pré-Processamento":
     pre_processamento.pre_processamento()
 elif selection == "💼 Algoritmos":
     Algoritmos.algoritmos()
+elif selection == "❤️ Teste com seus dados!":
+    testeVoce()
