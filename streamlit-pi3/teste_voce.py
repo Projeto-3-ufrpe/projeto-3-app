@@ -70,12 +70,11 @@ def testeVoce():
         option_SkinCancer = st.radio(
         'Voce tem ou ja teve cancer de pele',
         ["Yes", "No"])
-    if st.button('Previsao!'):
-        #tratar os dados (ajustar true e false), e os 
+    if st.button('Previsao!'): 
         linha_sem_tratamento = pd.DataFrame([[option_HeartDisease,option_bmi,option_smoking,option_AlcoholDrinking,option_stroke,option_PhysicalHealth,option_MentalHealth,option_DiffWalking,option_sex,option_age,option_race,option_Diabetic,option_PhysicalActivity,option_GenHealth,option_SleepTime,option_Asthma,option_KidneyDisease,option_SkinCancer]], columns=['HeartDisease','BMI','Smoking','AlcoholDrinking','Stroke','PhysicalHealth','MentalHealth','DiffWalking','Sex','AgeCategory','Race','Diabetic','PhysicalActivity','GenHealth','SleepTime','Asthma','KidneyDisease','SkinCancer'])
-        st.write(linha_sem_tratamento)
-        linha_com_tratamento = dataframe.returnDataFrame(linha_sem_tratamento)
-        st.write(linha_com_tratamento)
+        dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+        linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
         #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
         regressao_logistica = regressao_logistica_treinada()
-        previsao = regressao_logistica.predict(linha_com_tratamento)
+        previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
+        st.subheader(f'Voce tem {float(previsao[0][1]) * 100:.3f}% de chance de ter uma doenca cardieca segundo nosso algoritmo! :)')
