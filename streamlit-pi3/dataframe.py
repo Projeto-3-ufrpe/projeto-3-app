@@ -5,7 +5,7 @@ from sklearn import model_selection, utils
 import streamlit as st
 
 
-dataframe_nao_numerico = pd.read_parquet('../heart_2020_cleaned.parquet')
+dataframe_nao_numerico = pd.read_parquet('./heart_2020_cleaned.parquet')
 labelEncoder = LabelEncoder()
 oneHotEncoder = OneHotEncoder()
 
