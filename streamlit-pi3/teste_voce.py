@@ -1,5 +1,5 @@
 import streamlit as st
-from Algoritmos import regressao_logistica_treinada
+from mineracao import regressao_logistica_treinada
 from dataframe import Dados
 import dataframe
 import pandas as pd

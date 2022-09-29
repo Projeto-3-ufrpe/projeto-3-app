@@ -4,7 +4,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import pergunta_1, pergunta_2, pergunta_3 
-import outlier, pre_processamento, Algoritmos
+import outlier, pre_processamento, mineracao
 import dataframe
 import tratamento_desbalanceamento_dados
 import categoricos_numericos
@@ -12,7 +12,7 @@ from teste_voce import testeVoce
 
 
 
-opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "💼 Algoritmos","❤️ Teste com seus dados!"]
+opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "💼 Mineração de Dados","❤️ Teste com seus dados!"]
 with st.sidebar:
     st.markdown('# 🆙GRUPO UPSCALE ')
     st.markdown('## MENU PRINCIPAL 👈')
@@ -60,7 +60,7 @@ elif selection == "🤝 Feature Importance":
     # featureImportance.featureImportance()
 elif selection == "⚙️ Pré-Processamento":
     pre_processamento.pre_processamento()
-elif selection == "💼 Algoritmos":
-    Algoritmos.algoritmos()
+elif selection == "💼 Mineração de Dados":
+    mineracao.mineracao()
 elif selection == "❤️ Teste com seus dados!":
     testeVoce()
