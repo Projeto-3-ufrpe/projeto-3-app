@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import pergunta_1, pergunta_2, pergunta_3 
+import featureImportance
 import outlier, pre_processamento, Algoritmos
 import dataframe
 import tratamento_desbalanceamento_dados
@@ -56,8 +57,7 @@ elif selection == "🤖 Tratando o desbalanceamento dos dados":
 elif selection == "🔢 De categoricos para numericos":
     categoricos_numericos.categoricos_to_numericos()
 elif selection == "🤝 Feature Importance":
-    pass
-    # featureImportance.featureImportance()
+    featureImportance.featureImportance()
 elif selection == "⚙️ Pré-Processamento":
     pre_processamento.pre_processamento()
 elif selection == "💼 Algoritmos":

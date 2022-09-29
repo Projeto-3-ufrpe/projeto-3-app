@@ -6,7 +6,8 @@ import numpy as np
 from sklearn import model_selection, dummy, metrics, utils, linear_model, ensemble
 def desbalanceamento_dados():
     st.title("A Partir dos dados abaixo podemos notar que há um desbalanceamento dos dados")
-    df = dataframe.Dados.dataframe_somente_com_colunas_numericas
+    df = dataframe.Dados.dataframe_sem_tratamento
+    df = dataframe.returnDataFrame(df)
     st.dataframe(df.HeartDisease.value_counts())
     #testando com DummyClassifier
     y = df.HeartDisease

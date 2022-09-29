@@ -23,7 +23,7 @@ def regressao_logistica_treinada():
     # predictionsLR = logreg_pipeline.predict(x_test)
     return logreg_pipeline
 
-def calculate_score_logistic_regression( x, y, x_test, y_test, matrix):
+def calculate_score_logistic_regression( x, y, x_test, y_test):
     logreg_pipeline = Pipeline(steps = [('scale',StandardScaler()),('LR',LogisticRegression(random_state=42))])
     logreg_pipeline.fit(x, y)
     predictionsLR = logreg_pipeline.predict(x_test)
@@ -32,7 +32,7 @@ def calculate_score_logistic_regression( x, y, x_test, y_test, matrix):
     if matrix:
         matrix(lgrmc, 'Logistic Regression', logreg_cv)
 
-def calculate_score_random_forest( x, y, x_test, y_test, matrix):
+def calculate_score_random_forest( x, y, x_test, y_test):
     rf_pipeline = Pipeline(steps = [('scale',StandardScaler()),('RF',RandomForestClassifier(random_state=42))])
     rf_pipeline.fit(x, y)
     predictionsRF = rf_pipeline.predict(x_test)
@@ -76,5 +76,5 @@ def algoritmos():
 
     st.markdown('___')
     st.markdown('# Conclusão')
-    st.markdown('### Considerando que iremos trabalhar com a previsão do diagnostico de doenças, iremos dar mais valor ao algoritmo que retornar mais falsos positivos em relação aos falsos negativos.')
-    st.markdown('### Na analise feita, podemos observar que o algoritmo de "RandomForest" retornou 22.747 falsos positivos enquanto o algoritmo de "Regressão Logistica" retornou 39.031 falsos positivos e levando isso em consideração fica evidente que o algoritmo maais confiavel é o de Regressão Logistica')
+    st.markdown('### Trabalhando com a predição de doenças a quantidade de falsos positivos em comparação a quantidade de falsos negativos é algo muito importante, porque é mais seguro o sujeito suspeitar que possua a doença e ir fazer os exames do que ele receber o diagnóstico negativo, realmente ter e não ir ao médico confirmar isso.')
+    st.markdown('### Considerando que a diferença de falsos positivos entre os dois algoritmos não é tão significativa, porém, há uma grande diferença na quantidade de positivos verdadeiros, o algoritmo que foi visto como mais seguro é o Random Florest.')

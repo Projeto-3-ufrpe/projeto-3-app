@@ -15,7 +15,7 @@ def pergunta3():
     
     st.write("***")
 
-    df = dataframe.Dados.dataframe
+    df = dataframe.dataframe_nao_numerico
 
 
     st.markdown('### Fumante ')
