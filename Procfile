@@ -1,0 +1,1 @@
+web: sh setup.sh && streamlit run streamlit-pi3/graficos-streamlit.py
