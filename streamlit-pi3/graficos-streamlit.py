@@ -5,7 +5,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pergunta_1, pergunta_2, pergunta_3 
 import featureImportance
-import outlier, pre_processamento, Algoritmos
+import outlier, pre_processamento
+# , Algoritmos
 import outlier, pre_processamento, mineracao
 import dataframe
 import tratamento_desbalanceamento_dados
