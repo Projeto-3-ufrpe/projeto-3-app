@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def pie_chart_com_doenca(coluna,quantidade):
     labels = f'Possui {coluna}', f'Não possui {coluna}'
-    df_limitado = Dados.df_somente_com_doencas_do_coracao.head(quantidade)
+    df_limitado = Dados.dataframe_sem_tratamento.query('HeartDisease == "Yes"')
     df_com_doenca_coracao_e_outra_doenca = df_limitado.query(f"{coluna} == 'Yes'")
     porcentagem_possui_outra_doenca = len(df_com_doenca_coracao_e_outra_doenca.index) / len(df_limitado.index)
     sizes = [porcentagem_possui_outra_doenca, 1 - porcentagem_possui_outra_doenca]

@@ -40,7 +40,6 @@ def featureImportance():
 
     #DADOS
     df = categoricos_numericos.returnDataFrame()
-    print(df.info())
     caracteristicas = df.drop('HeartDisease', axis=1)
     previsor = df['HeartDisease']
 

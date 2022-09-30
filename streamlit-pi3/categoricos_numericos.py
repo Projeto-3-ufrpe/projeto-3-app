@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 
 df = pd.read_parquet('./heart_2020_cleaned.parquet')
-print(df.head())
 labelEncoder = LabelEncoder()
 oneHotEncoder = OneHotEncoder()
 
@@ -67,7 +66,6 @@ def categoricos_to_numericos():
     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
     dataframa = dataframa.drop('AgeCategory', axis=1)
     st.dataframe(dataframa.head())
-    print(feature_Arr)
     st.markdown(" ")
     st.markdown('#### "Dummies" para a categoria "Race".')
     
@@ -79,7 +77,6 @@ def categoricos_to_numericos():
     feature_Arr = pd.get_dummies(dataframa['GenHealth'])
     dataframa = pd.concat([dataframa, feature_Arr], axis=1)
     dataframa = dataframa.drop('GenHealth', axis=1)
-    print(df.head())
     st.dataframe(dataframa.head())
 
     return dataframa
