@@ -51,6 +51,11 @@ def pergunta_2():
     st.subheader(f'''Analisando os gráficos com a mesma quantidade de indivíduos que já tiveram e que não tiveram doença cardíeca
     Podemos supor que há um leve indicativo de ter uma doença do coração já tendo uma das três doenças analisadas, com uma maior
     ênfase em Diabetes.''')
+    st.subheader(f'''Abaixo está uma imagem de dados de um jovem saudável que não teve diabetes''')
+    st.image('./assets/predicao-sem-diabetes.jpg')
+    st.subheader(f'''E abaixo está a mesma predição, só mudando o diabetes para sim''')
+    st.image('./assets/predicao-com-diabetes.jpg')
+    st.subheader('''Note que aumentou em média 3 por cento por um jovem saudável''')
         
 
 
