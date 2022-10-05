@@ -94,6 +94,7 @@ def balanceamentoDados(df):
 class Dados:
     
     dataframe_sem_tratamento = pd.read_parquet('../heart_2020_cleaned.parquet')
+    dataframe_sem_tratamento_csv = pd.read_csv('../heart_2020_cleaned.csv')
     dataframe = returnDataFrame(dataframe_sem_tratamento)
     dataframe = balanceamentoDados(dataframe)
     # dataframe_somente_com_colunas_numericas = dataframe.drop(columns=['AgeCategory','GenHealth', 'Race','Sex', ])
