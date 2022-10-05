@@ -3,6 +3,18 @@ from dataframe import Dados
 import pandas as pd
 import plotly.express as px
 import dataframe
+from mineracao import regressao_logistica_treinada
+
+def func(df, sexo, imc, idade):
+    filter_sales_units = df[(df['Sex'] == sexo) & (df["classificacao"] == imc) & (df['AgeCategory'] == idade)]
+
+
+    dataframe_sem_tratamento_concatenado = df.append(filter_sales_units.drop('classificacao', axis=1))
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+
+    regressao_logistica = regressao_logistica_treinada()
+    previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1).drop('classificacao', axis=1))
+    return previsao
 
 def pergunta3():
 
@@ -75,6 +87,7 @@ def pergunta3():
     df.loc[df['BMI'] >= 40.0, 'classificacao'] = 'OBESIDADE GRAVE'
 
 
+
     count_magreza = int(
         df[(df["classificacao"] == "MAGREZA")]["classificacao"].count())
 
@@ -145,6 +158,37 @@ def pergunta3():
     figagecategory.update_yaxes(showline=True, showgrid=False)
     figagecategory.update_xaxes(categoryorder='category ascending',showline=True, showgrid=False)
     st.write(figagecategory)
+
+    col1, col2 = st.columns(2)
+
+    option_sex = col1.selectbox(
+    'Sexo',
+    ("Male","Female"))
+
+    option_age = col2.selectbox(
+    'Idade',
+    ("18-24","25-29","30-34","35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74","75-79","80 or older"))
+
+    previsao = func(df, option_sex, 'MAGREZA', option_age)
+    previsao2 = func(df, option_sex, 'NORMAL', option_age)
+    previsao3 = func(df, option_sex, 'OBESIDADE', option_age)
+    previsao4 = func(df, option_sex, 'OBESIDADE GRAVE', option_age)
+    previsao5 = func(df, option_sex, 'SOBREPESO', option_age)
+    
+
+    #filter_sales_units = df[(df['Sex'] == 'Female') & (df["classificacao"] == 'MAGREZA') & (df['AgeCategory'] == '75-79')]
+
+
+
+
+    d = {'MAGREZA': [format(previsao[0][1] * 100, '.1f')],
+        'NORMAL': [format(previsao2[0][1] * 100, '.1f')],
+        'OBESIDADE': [format(previsao3[0][1] * 100, '.1f')],
+        'OBESIDADE GRAVE': [format((previsao4[0][1] * 100), '.1f')],
+        'SOBREPESO': [format((previsao5[0][1] * 100), '.1f')],
+    }
+    st.markdown('### Previsão usando regressão logística')
+    st.dataframe(pd.DataFrame(data=d))
 
     #st.write('### ')
     st.subheader(f'''Com base nas análises feitas nos gráficos com a mesma quantidade de indivíduos que já tiveram e que não tiveram as doenças cardíaca
