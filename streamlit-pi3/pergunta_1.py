@@ -9,7 +9,7 @@ from mineracao import regressao_logistica_treinada
 def pergunta1():
     
     st.title('É correto afirmar que características imutáveis dos indivíduos podem indicar que eles possuem ou podem vir a possuir doenças cardíacas? E existe algum fator que acompanhe essas características com frequência?')
-    df = dataframe.dataframe_nao_numerico
+    df = dataframe.Dados.dataframe_sem_tratamento
     st.markdown('### Objetivo da Análise: Comparar os dados referentes a raça, idade e sexo afim de enxergar quais se repetem com mais frequencia entre os individuos portadores de doenças cardiacas. E em seguida analisar se algum outro dado se repete junto a essas características.')
     st.markdown('#### De início iremos comparar a quantidade de indivíduos que possuem doenças cardíacas com a quantidade de indivíduos que não possuem em cada coluna.')
     st.markdown('###### 5 primeiros itens de cada coluna.')
