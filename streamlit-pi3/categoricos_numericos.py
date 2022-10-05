@@ -17,7 +17,7 @@ diabeticos = {
 }
     
 def categoricos_to_numericos():
-    st.markdown('# Passando atributos categorigos para numericos')
+    st.markdown('# Passando atributos categoricos para numericos')
     st.markdown('___')
 
     st.dataframe(df.head())
@@ -26,7 +26,7 @@ def categoricos_to_numericos():
     st.markdown('#### Pra isso serão utilizados dois algoritimos.')
     st.markdown('- LabelEncoder')
     st.markdown('- OneHotEncoder')
-    st.markdown('#### Basicamente, o LabelEncoder tranforma cada um das categorias em um numero enquanto o OneHotEncoder tranforma cada categoria em uma coluna. No caso do OneHotEncoder, iremos utilizar o método "get_dummies" da biblioteca Pandas, pois ela irá executar a mesma tarefa de forma mais simples.')
+    st.markdown('#### Basicamente, o LabelEncoder transforma cada um das categorias em um numero enquanto o OneHotEncoder transforma cada categoria em uma coluna. No caso do OneHotEncoder, iremos utilizar o método "get_dummies" da biblioteca Pandas, pois ela irá executar a mesma tarefa de forma mais simples.')
     
     st.markdown('___')
 
@@ -59,7 +59,6 @@ def categoricos_to_numericos():
     st.dataframe(df.head())
 
     st.markdown('#### ')
-    st.markdown('#### A coluna "SEX" foi a unica na qual foi possivel aplicar o LabelEncoder. A partir de agora iremos trabalhar com o OneHotEncode.')
     st.markdown(" ")
     st.markdown('#### Agora iremos adicionar o "dummies" a categoria "AgeCategory".')
     dataframa = df

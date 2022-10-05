@@ -5,7 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pergunta_1, pergunta_2, pergunta_3 
 import featureImportance
-import outlier, pre_processamento, Algoritmos
 import outlier, pre_processamento, mineracao
 import dataframe
 import tratamento_desbalanceamento_dados
@@ -26,7 +25,7 @@ with st.sidebar:
 def inicio():
     st.markdown('# 🆙GRUPO UPSCALE')
     st.title('Ánalise de dados para a cadeira PI3')
-    st.markdown('### A ánalise dos dados do conjunto de dados HEART_DISEASE tem como o objetivo fazer o uso de um olhar critico e questionador sobre os dados encontrados para que através desta analise seja possivel responder as perguntas deste trabalho e chegar a uma conclusão satisfatoria.')
+    st.markdown('### A ánalise dos dados do conjunto de dados HEART_DISEASE tem como o objetivo fazer o uso de um olhar critico e questionador sobre os dados encontrados para que através desta análise seja possivel responder as perguntas deste trabalho e chegar a uma conclusão satisfatoria.')
     st.markdown('### As perguntas são 3: ')
     st.markdown('- É correto afirmar que características imutáveis dos indivíduos podem indicar que eles possuem ou podem vir a possuir doenças cardíacas? E existe algum fator que acompanhe essas características com frequência?')
     st.markdown('- Doenças provindas de outros órgãos do corpo, podem ser um indicativo de doenças cardíacas ?')

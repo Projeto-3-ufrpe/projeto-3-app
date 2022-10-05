@@ -31,8 +31,8 @@ class feature:
 
 
 def featureImportance():
-    st.markdown('# Analise de Feature Importance dos dados')
-    st.markdown('### Feature Importance resumidamente trata da analise de quais relacionamentos entre colunas influenciam no resultado.')
+    st.markdown('# Análise de Feature Importance dos dados')
+    st.markdown('### Feature Importance resumidamente trata da análise de quais relacionamentos entre colunas influenciam no resultado.')
     st.markdown('### Através da Feature Importance prentendemos encontrar o conjunto de atributos que nos tragam os resultados mais precisos.')
     st.markdown('### Iremos analisar 3 algoritmos através de funções da biblioteca sklearn do python.')
     st.markdown('- f_regression')

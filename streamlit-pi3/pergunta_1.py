@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import dataframe
+from mineracao import regressao_logistica_treinada
+
 # import plotly.express as px
 def pergunta1():
     
@@ -137,7 +139,109 @@ def pergunta1():
     axes = sns.countplot(data=dataframe_yes,x='HeartDisease', palette='Set1')
     st.pyplot(fig)
 
+#TESTES PARA COMPARAÇÃO DO SEXO
+    st.markdown('### Caracteristicas individuo 1:')
+    linha_sem_tratamento = dataframe.dataframe_nao_numerico.iloc[-1:]
+    linha_sem_tratamento['Sex'] = 'Female'
+    linha_sem_tratamento['Race'] = 'White'
+    linha_sem_tratamento['AgeCategory'] = '75-79'
+    st.dataframe(linha_sem_tratamento)
+    dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+    #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+    regressao_logistica = regressao_logistica_treinada()
+    previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
     
+    st.markdown('### Caracteristicas individuo 2:')
+    linha_sem_tratamento = dataframe.dataframe_nao_numerico.iloc[-1:]
+    linha_sem_tratamento['Sex'] = 'Male'
+    linha_sem_tratamento['Race'] = 'White'
+    linha_sem_tratamento['AgeCategory'] = '75-79'
+    st.dataframe(linha_sem_tratamento)
+    dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+    #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+    regressao_logistica = regressao_logistica_treinada()
+    previsao2 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
+    st.markdown(f'##### O individuo 1, representando o sexo feminino, apresentou {float(previsao[0][1]) * 100:.3f}% de chances de possuir uma doença cardiaca, enquanto o individuo 2, que representa o sexo masculino, apresentou {float(previsao2[0][1]) * 100:.3f}%')
+    diferenca = (float(previsao2[0][1]) * 100) - (float(previsao[0][1]) * 100)
+    st.markdown(f'##### Como é possivel ver, uma diferença de {diferenca:.3f}% para {"o sexo masculino" if previsao2[0][1] > previsao[0][1] else "o sexo feminino"}.')
+#TESTES PARA COMPARAÇÃO DO SEXO
+
+    st.markdown('### Caracteristicas individuo 1:')
+    linha_sem_tratamento = dataframe.dataframe_nao_numerico.iloc[-1:]
+    linha_sem_tratamento['Sex'] = 'Female'
+    linha_sem_tratamento['Race'] = 'Black'
+    linha_sem_tratamento['AgeCategory'] = '75-79'
+    st.dataframe(linha_sem_tratamento)
+    dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+    #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+    regressao_logistica = regressao_logistica_treinada()
+    previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
+    
+    st.markdown('### Caracteristicas individuo 2:')
+    linha_sem_tratamento = dataframe.dataframe_nao_numerico.iloc[-1:]
+    linha_sem_tratamento['Sex'] = 'Male'
+    linha_sem_tratamento['Race'] = 'White'
+    linha_sem_tratamento['AgeCategory'] = '75-79'
+    st.dataframe(linha_sem_tratamento)
+    dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+    #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+    regressao_logistica = regressao_logistica_treinada()
+    previsao2 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
+
+    st.markdown('### Caracteristicas individuo 3:')
+    linha_sem_tratamento = dataframe.dataframe_nao_numerico.iloc[-1:]
+    linha_sem_tratamento['Sex'] = 'Male'
+    linha_sem_tratamento['Race'] = 'Asian'
+    linha_sem_tratamento['AgeCategory'] = '75-79'
+    st.dataframe(linha_sem_tratamento)
+    dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+    #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+    regressao_logistica = regressao_logistica_treinada()
+    previsao3 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
+
+    st.markdown('### Caracteristicas individuo 4:')
+    linha_sem_tratamento = dataframe.dataframe_nao_numerico.iloc[-1:]
+    linha_sem_tratamento['Sex'] = 'Male'
+    linha_sem_tratamento['Race'] = 'Hispanic'
+    linha_sem_tratamento['AgeCategory'] = '75-79'
+    st.dataframe(linha_sem_tratamento)
+    dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+    #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+    regressao_logistica = regressao_logistica_treinada()
+    previsao4 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
+
+    st.markdown('### Caracteristicas individuo 4:')
+    linha_sem_tratamento = dataframe.dataframe_nao_numerico.iloc[-1:]
+    linha_sem_tratamento['Sex'] = 'Male'
+    linha_sem_tratamento['Race'] = 'American Indian/Alaskan Native'
+    linha_sem_tratamento['AgeCategory'] = '75-79'
+    st.dataframe(linha_sem_tratamento)
+    dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+    #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+    regressao_logistica = regressao_logistica_treinada()
+    previsao5 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
+    d = {'Black': [previsao[0][1] * 100],
+         'White': [previsao2[0][1] * 100],
+         'Asian': [previsao3[0][1] * 100],
+         'Hispanic': [format((previsao4[0][1] * 100), '.1f')],
+         'American Indian/Alaskan Native': [(previsao5[0][1]*100)]
+        }
+
+    tabelaRacas = pd.DataFrame(data=d)
+    st.dataframe(tabelaRacas)
+    st.markdown(f'##### O individuo 1, representando o grupo de pessoas negras, apresentou {float(previsao[0][1]) * 100:.3f}% de chances de possuir uma doença cardiaca, enquanto o individuo 2, que representa o grupo de pessoas brancas, apresentou {float(previsao2[0][1]) * 100:.3f}%, o individuo 3, representando o grupo de pessoas asiaticas, apresentou {float(previsao3[0][1]) * 100:.3f}%, o individuo 4, representando o grupo de pessoas hispanicas ou latinas, apresentou {float(previsao4[0][1]) * 100:.3f}%.')
+    diferenca = (float(previsao2[0][1]) * 100) - (float(previsao[0][1]) * 100)
+    st.markdown(f'##### Como é possivel ver, uma diferença de {diferenca:.3f}% para {"o sexo masculino" if previsao2[0][1] > previsao[0][1] else "o sexo feminino"}.')
+
+
+
     st.markdown("***")
 
     
