@@ -13,7 +13,7 @@ from teste_voce import testeVoce
 
 
 
-opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutaveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "💼 Mineração de Dados","❤️ Teste com seus dados!"]
+opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutáveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "💼 Mineração de Dados","❤️ Teste com seus dados!"]
 with st.sidebar:
     st.markdown('# 🆙GRUPO UPSCALE ')
     st.markdown('## MENU PRINCIPAL 👈')
@@ -42,7 +42,7 @@ def inicio():
 
 
 
-if selection == "🧑 Caracteristicas imutaveis":
+if selection == "🧑 Caracteristicas imutáveis":
     pergunta_1.pergunta1()
 elif selection == "Inicio":
     inicio()

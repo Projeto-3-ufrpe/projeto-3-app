@@ -3,6 +3,8 @@ from dataframe import Dados
 import pandas as pd
 # import numpy as np
 import matplotlib.pyplot as plt
+import dataframe
+from mineracao import regressao_logistica_treinada
 
 def pie_chart_com_doenca(coluna):#quantidade
     labels = f'Possui {coluna}', f'Não possui {coluna}'
@@ -30,7 +32,18 @@ def pie_chart_sem_doenca(coluna): #quantidade
             shadow=True, startangle=90)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     st.pyplot(fig1)
-
+def previsoes(Diabetic, Asthma, SkinCancer, KidneyDisease):
+    linha_sem_tratamento = dataframe.dataframe_nao_numerico.iloc[-1:]
+    linha_sem_tratamento['Asthma'] = Asthma
+    linha_sem_tratamento['Diabetic'] = Diabetic
+    linha_sem_tratamento['SkinCancer'] = SkinCancer
+    linha_sem_tratamento['KidneyDisease'] = KidneyDisease
+    # st.dataframe(linha_sem_tratamento)
+    dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
+    linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
+    #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
+    regressao_logistica = regressao_logistica_treinada()
+    return regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
 
 def pergunta_2():
     st.title('Doenças provindas de outros órgãos do corpo, podem ser um indicativo de doenças cardíacas ?')
@@ -41,6 +54,8 @@ def pergunta_2():
         pie_chart_com_doenca('Diabetic')
         pie_chart_com_doenca('Asthma')
         pie_chart_com_doenca('SkinCancer')
+        pie_chart_com_doenca('KidneyDisease')
+        
 
     with col2:
         st.subheader('Dados com indivíduos que não possui nenhuma doença no coração')
@@ -48,14 +63,23 @@ def pergunta_2():
         pie_chart_sem_doenca('Diabetic')
         pie_chart_sem_doenca('Asthma')
         pie_chart_sem_doenca('SkinCancer')
-    st.subheader(f'''Analisando os gráficos com a mesma quantidade de indivíduos que já tiveram e que não tiveram doença cardíeca
-    Podemos supor que há um leve indicativo de ter uma doença do coração já tendo uma das três doenças analisadas, com uma maior
-    ênfase em Diabetes.''')
-    st.subheader(f'''Abaixo está uma imagem de dados de um jovem saudável que não teve diabetes''')
-    st.image('./assets/predicao-sem-diabetes.jpg')
-    st.subheader(f'''E abaixo está a mesma predição, só mudando o diabetes para sim''')
-    st.image('./assets/predicao-com-diabetes.jpg')
-    st.subheader('''Note que aumentou em média 3 por cento por um jovem saudável''')
+        pie_chart_sem_doenca('KidneyDisease')
+    # st.markdown('### Caracteristicas individuo 1 - Diabetes:')
+    previsao_diabetes = previsoes("Yes","No","No","No")
+    # st.markdown('### Caracteristicas individuo 2 - Asma:')
+    previsao_asma = previsoes("No","Yes","No","No")
+    # st.markdown('### Caracteristicas individuo 3 - câncer de pele:')
+    previsao_cancer_de_pele = previsoes("No","No","Yes","No")
+    # st.markdown('### Caracteristicas individuo 4 - doença nos rins:')
+    previsao_rins = previsoes("No","No","No","Yes")
+    d = {'Diabetes': [format(previsao_diabetes[0][1] * 100, '.1f')],
+        'Asma': [format(previsao_asma[0][1] * 100, '.1f')],
+        'Câncer de pele': [format(previsao_cancer_de_pele[0][1] * 100, '.1f')],
+        'Doença nos rins': [format((previsao_rins[0][1] * 100), '.1f')],
+    }
+    st.markdown('### Previsão usando regressão logística')
+    st.dataframe(pd.DataFrame(data=d))
+    st.markdown(f'Analisando os gráficos com a mesma quantidade de indivíduos que já tiveram e que não tiveram doenças cardíacas,  podemos supor que há um leve indicativo de ter uma doença do coração já tendo uma das três doenças analisadas, com uma maior ênfase em diabetes e doenças renais. Podemos ver que tivemos uma maior diferença percentual nas doenças renais, com uma porcentagem bem pequena de indivíduos que não tiveram doenças do coração, e um crescimento de 10% nas pessoas que tiveram, já em diabetes o crescimento foi maior, foi de aproximadamente 21%.')
         
 
 
