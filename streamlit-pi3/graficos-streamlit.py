@@ -13,7 +13,7 @@ from teste_voce import testeVoce
 
 
 
-opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutáveis", "🧠 Doenças vindas de outros orgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numericos", "🤝 Feature Importance", "💼 Mineração de Dados","❤️ Teste com seus dados!"]
+opcoes = ["Inicio", "🤖 Tratando o desbalanceamento dos dados", "🧑 Caracteristicas imutáveis", "🧠 Doenças vindas de outros órgãos", "⛹️ Hábitos", "📈 Outlier", "⚙️ Pré-Processamento", "🔢 De categoricos para numéricos", "🤝 Feature Importance", "💼 Mineração de Dados","❤️ Teste com seus dados!"]
 with st.sidebar:
     st.markdown('# 🆙GRUPO UPSCALE ')
     st.markdown('## MENU PRINCIPAL 👈')
@@ -46,7 +46,7 @@ if selection == "🧑 Caracteristicas imutáveis":
     pergunta_1.pergunta1()
 elif selection == "Inicio":
     inicio()
-elif selection == "🧠 Doenças vindas de outros orgãos":
+elif selection == "🧠 Doenças vindas de outros órgãos":
     pergunta_2.pergunta_2()
 elif selection == "⛹️ Hábitos":
     pergunta_3.pergunta3()
@@ -54,7 +54,7 @@ elif selection == "📈 Outlier":
     outlier.outlier()
 elif selection == "🤖 Tratando o desbalanceamento dos dados":
     tratamento_desbalanceamento_dados.desbalanceamento_dados()
-elif selection == "🔢 De categoricos para numericos":
+elif selection == "🔢 De categoricos para numéricos":
     categoricos_numericos.categoricos_to_numericos()
 elif selection == "🤝 Feature Importance":
     featureImportance.featureImportance()
