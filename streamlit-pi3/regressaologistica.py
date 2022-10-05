@@ -75,8 +75,7 @@ ax.set_ylabel('Custo')
 ax.set_title('Erro vs Epoch')
 plt.show()
 
-#PREDICOES NÃO ESTA FUNCIONANDO
-print(predict(linha_w, training_data[0]))
+# print(predict(linha_w, training_data[0]))
 
 
 
