@@ -3,7 +3,7 @@ from dataframe import Dados
 import pandas as pd
 import plotly.express as px
 import dataframe
-from mineracao import regressao_logistica_treinada
+from mineracao import random_forest_treinada
 
 def func(df, sexo, imc, idade, bebe, fuma):
     filter_sales_units = df[(df['Sex'] == sexo) & (df["classificacao"] == imc) & (df['AgeCategory'] == idade) & (df['Smoking'] == fuma) & (df["AlcoholDrinking"] == bebe)]
@@ -12,7 +12,7 @@ def func(df, sexo, imc, idade, bebe, fuma):
     dataframe_sem_tratamento_concatenado = df.append(filter_sales_units.drop('classificacao', axis=1))
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
 
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1).drop('classificacao', axis=1))
     return previsao
 
@@ -192,7 +192,7 @@ def pergunta3():
     }
 
     st.markdown('### Previsão usando regressão logística')
-    st.dataframe(pd.DataFrame(data=d))
+    # st.dataframe(pd.DataFrame(data=d))
     st.dataframe(pd.DataFrame(data=p))
 
     #st.write('### ')

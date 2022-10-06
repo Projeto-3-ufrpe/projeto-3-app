@@ -56,8 +56,8 @@ elif selection == "🤖 Tratando o desbalanceamento dos dados":
     tratamento_desbalanceamento_dados.desbalanceamento_dados()
 elif selection == "🔢 De categoricos para numéricos":
     categoricos_numericos.categoricos_to_numericos()
-elif selection == "🤝 Feature Importance":
-    featureImportance.featureImportance()
+# elif selection == "🤝 Feature Importance":
+#     featureImportance.featureImportance()
 elif selection == "⚙️ Pré-Processamento":
     pre_processamento.pre_processamento()
 elif selection == "💼 Mineração de Dados":

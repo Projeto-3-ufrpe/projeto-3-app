@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import dataframe
-from mineracao import regressao_logistica_treinada
+from mineracao import random_forest_treinada
 
 # import plotly.express as px
 def analisaCaracteristica(coluna, valor):
@@ -13,7 +13,7 @@ def analisaCaracteristica(coluna, valor):
     dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
     #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
     return previsao
 
@@ -25,7 +25,7 @@ def pergunta1():
         dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
         linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
         #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-        regressao_logistica = regressao_logistica_treinada()
+        regressao_logistica = random_forest_treinada()
         previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
         return previsao
 
@@ -172,7 +172,7 @@ def pergunta1():
     dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
     #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     previsao2 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
     # st.markdown(f'##### O individuo 1, representando o sexo feminino, apresentou {float(previsao[0][1]) * 100:.3f}% de chances de possuir uma doença cardiaca, enquanto o individuo 2, que representa o sexo masculino, apresentou {float(previsao2[0][1]) * 100:.3f}%')
     # diferenca = (float(previsao2[0][1]) * 100) - (float(previsao[0][1]) * 100)
@@ -188,7 +188,7 @@ def pergunta1():
     dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
     #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
     
     st.markdown('### Caracteristicas individuo 2:')
@@ -200,7 +200,7 @@ def pergunta1():
     dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
     #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     previsao2 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
 
     st.markdown('### Caracteristicas individuo 3:')
@@ -212,7 +212,7 @@ def pergunta1():
     dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
     #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     previsao3 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
 
     st.markdown('### Caracteristicas individuo 4:')
@@ -224,7 +224,7 @@ def pergunta1():
     dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
     #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     previsao4 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
 
     st.markdown('### Caracteristicas individuo 4:')
@@ -236,7 +236,7 @@ def pergunta1():
     dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
     #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     previsao5 = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
     d = {'Black': [previsao[0][1] * 100],
          'White': [previsao2[0][1] * 100],

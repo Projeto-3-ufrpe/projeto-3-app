@@ -4,7 +4,7 @@ import pandas as pd
 # import numpy as np
 import matplotlib.pyplot as plt
 import dataframe
-from mineracao import regressao_logistica_treinada
+from mineracao import random_forest_treinada
 
 def pie_chart_com_doenca(coluna):#quantidade
     labels = f'Possui {coluna}', f'Não possui {coluna}'
@@ -42,7 +42,7 @@ def previsoes(Diabetic, Asthma, SkinCancer, KidneyDisease):
     dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
     linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
     #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-    regressao_logistica = regressao_logistica_treinada()
+    regressao_logistica = random_forest_treinada()
     return regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
 
 def pergunta_2():

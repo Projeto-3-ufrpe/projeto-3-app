@@ -1,5 +1,5 @@
 import streamlit as st
-from mineracao import regressao_logistica_treinada
+from mineracao import random_forest_treinada
 from dataframe import Dados
 import dataframe
 import pandas as pd
@@ -75,6 +75,7 @@ def testeVoce():
         dataframe_sem_tratamento_concatenado = dataframe.dataframe_nao_numerico.append(linha_sem_tratamento)
         linha_com_tratamento = dataframe.returnDataFrame(dataframe_sem_tratamento_concatenado)
         #criar metodo para treinar a regressao logisticar e usar o predict nessa linha_com_tratamento
-        regressao_logistica = regressao_logistica_treinada()
+        regressao_logistica = random_forest_treinada()
+        st.write(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1).shape)
         previsao = regressao_logistica.predict_proba(linha_com_tratamento.iloc[[-1]].drop('HeartDisease', axis=1))
         st.subheader(f'Voce tem {float(previsao[0][1]) * 100:.3f}% de chance de ter uma doenca cardieca segundo nosso algoritmo! :)')
