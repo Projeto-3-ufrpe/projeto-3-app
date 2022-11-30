@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 import pandas as pd
 import numpy as np
 
-df = pd.read_parquet('../heart_2020_cleaned.parquet')
+df = pd.read_parquet('./heart_2020_cleaned.parquet')
 labelEncoder = LabelEncoder()
 oneHotEncoder = OneHotEncoder()
 
